@@ -25,8 +25,10 @@ var isValid = function(s) {
     if (c === '(' || c === '[' || c === '{') {
       stack.push(c);
     }else {
-      const t = stack.pop();
-      if (t === '(' && c !== ')' || t === '[' && c !== ']' || t === '{' && c !== '}') {
+      const t = stack[stack.length - 1];
+      if (t === '(' && c === ')' || t === '[' && c === ']' || t === '{' && c === '}') {
+        stack.pop()
+      }else {
         return false;
       }
     }

@@ -11,6 +11,40 @@ stack.push(2);
 const item1 = stack.pop();
 const item2 = stack.pop();
 
+// 封装一个栈，提供push、pop、peek方法
+class Stack {
+  dataSource = [];
+  push(item) {
+    this.dataSource[this.dataSource.length] = item;
+    return this.dataSource.length;
+  }
+  pop() {
+    const item = this.dataSource[this.dataSource.length - 1];
+    this.dataSource.length -= 1;
+    return item;
+  }
+  peek() {
+    return this.dataSource;
+  }
+}
+
+// 十进制转换成二进制
+function transform(num) {
+  const stack = [];
+  let str = '';
+  while (num > 0) {
+    if (num % 2 === 0) {
+      stack.push(0);
+    }else {
+      stack.push(1);
+    }
+    num = Math.floor(num / 2);
+  }
+  while(stack.length) {
+    str += stack.pop();
+  }
+  return str || '0';
+}
 
 // leetcode 20题，有效的括号
 
@@ -35,3 +69,6 @@ var isValid = function(s) {
   }
   return stack.length === 0;
 };
+
+
+// leetcode 144题，二叉树的前序遍历

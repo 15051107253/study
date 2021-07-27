@@ -19,17 +19,17 @@ const item2 = stack.pop();
  * @return {boolean}
  */
 var isValid = function(s) {
+  if (s.length % 2 === 1) return false;
   const stack = [];
-  for (const item of s) {
-    if (item === '(' || item === '[' || item === '{') {
-      stack.push(item);
-    }else if (item === ')' || item === ']' || item === '}') {
-      const n = stack.pop();
-      const s = item === ')' ? '(' : item === ']' ? '[' : '{';
-      if (!n || n !== s) {
+  for (const c of s) {
+    if (c === '(' || c === '[' || c === '{') {
+      stack.push(c);
+    }else {
+      const t = stack.pop();
+      if (t === '(' && c !== ')' || t === '[' && c !== ']' || t === '{' && c !== '}') {
         return false;
       }
     }
   }
-  return !stack.length;
+  return stack.length === 0;
 };

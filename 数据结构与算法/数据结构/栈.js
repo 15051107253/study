@@ -24,7 +24,7 @@ class Stack {
     return item;
   }
   peek() {
-    return this.dataSource;
+    return this.dataSource[0];
   }
 }
 

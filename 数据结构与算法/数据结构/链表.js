@@ -1,4 +1,5 @@
 // 链表 多个元素组成的列表，元素存储不连续，用next指针连在一起
+// js中链表是个嵌套多层的对象，当 a, b两个变量都指向这个对象时，a 改动了 b 也随之改动。另外如果 b 指向了 a 对象中的某层嵌套对象。当 b 改动时，a 对象内部还是会改动。 
 
 const a = {val: 'a'};
 const b = {val: 'b'};
@@ -29,6 +30,21 @@ while(p) {
   console.log(p.val);
   p = p.next;
 }
+
+
+// 编写一个 instanceof 方法，判断一个变量是否是另一个变量的实例
+
+function myInstanceof(a, b) {
+  let p = a;
+  while(p) {
+    if (p.__proto__ === b.prototype) {
+      return true;
+    }
+    p = p.__proto__;
+  }
+  return false;
+}
+
 
 
 // leetcode 237题，删除链表中的节点
@@ -111,4 +127,77 @@ var addTwoNumbers = function(l1, l2) {
   }
   if (carry) p3.next = new ListNode(carry);
   return l3.next;
+};
+
+
+// leetcode 83题，删除排序链表中的重复元素
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+
+var deleteDuplicates = function(head) {
+  let p = head;
+  while(p && p.next) {
+    if (p.val === p.next.val) {
+      p.next = p.next.next;
+    }else {
+      p = p.next;
+    }
+  }
+  return head;
+};
+
+// leetcode 141题 环形链表
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+  let p1 = head;
+  let p2 = head;
+  while(p1 && p2 && p2.next) {
+    p1 = p1.next;
+    p2 = p2.next.next;
+    if (p1 === p2) {
+      return true;
+    }
+  }
+  return false;
+};
+
+
+
+// leetcode 234题 回文链表
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+
 };

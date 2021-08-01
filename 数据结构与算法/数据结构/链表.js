@@ -199,5 +199,18 @@ var hasCycle = function(head) {
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-
+  const stack = [];
+  let p = head;
+  while(p) {
+    stack.push(p.val);
+    p = p.next;
+  }
+  let len = stack.length / 2;
+  while(len > 0) {
+    if (stack[(stack.length / 2) - len] !== stack[(stack.length / 2) + len - 1]) {
+      return false;
+    }
+    len --;
+  }
+  return true;
 };

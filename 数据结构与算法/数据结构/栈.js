@@ -72,3 +72,27 @@ var isValid = function(s) {
 
 
 // leetcode 144题，二叉树的前序遍历
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+ var preorderTraversal = function(root) {
+  const res = [];
+  if (!root) return res;
+  const stack = [root];
+  while (stack.length) {
+      const n = stack.pop();
+      res.push(n.val);
+      if (n.right) stack.push(n.right);
+      if (n.left) stack.push(n.left);
+  }
+  return res;
+};
